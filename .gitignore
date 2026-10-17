@@ -1,8 +1,8 @@
-# �������� ������ � ����� CSV, � ��� ����� ��������
+# Исходные данные и любые CSV, в том числе прогнозы
 data/
 *.csv
 
-# ���������� � ��������� ��������� Optuna/CatBoost
+# Результаты и локальное состояние Optuna/CatBoost
 outputs/
 checkpoints/
 catboost_info/
@@ -13,7 +13,7 @@ catboost_info/
 *.cbm
 *.pkl
 
-# Python, ��������� � ��������� ���������
+# Python, окружение и локальные настройки
 __pycache__/
 *.py[cod]
 .venv/
@@ -23,7 +23,7 @@ venv/
 .ipynb_checkpoints/
 *.ipynb
 
-# ���� � ��������� �����
+# Логи и служебные файлы
 *.log
 .DS_Store
 Thumbs.db
