@@ -1,0 +1,5 @@
+numpy==2.4.4
+pandas==3.0.3
+scikit-learn==1.5.2
+catboost==1.2.10
+optuna==4.8.0
