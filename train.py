@@ -1,4 +1,4 @@
-"""Прогноз РТО следующего месяца: линейные базы и CatBoost + Optuna."""
+"""«Градиент роста 2026», этап 2: прогноз РТО на март 2025 года."""
 
 import os
 from pathlib import Path
@@ -155,8 +155,14 @@ def main():
         "new_id": X_final["new_id"].to_numpy(),
         "rto": np.exp(model_catboost.predict(X_final)),
     })
+    if len(submission) != 18657 or not submission["new_id"].is_unique:
+        raise ValueError("Для посылки второго этапа нужны 18 657 уникальных new_id")
+    if not np.isfinite(submission["rto"]).all():
+        raise ValueError("В прогнозе есть неконечные значения РТО")
     output_path = OUTPUT_DIR / "test.csv"
     submission.to_csv(output_path, index=False)
+    if output_path.stat().st_size > 1_000_000:
+        raise ValueError(f"Файл {output_path} превышает лимит 1 МБ")
     print(f"Прогноз сохранён: {output_path} ({len(submission)} строк)")
 
 
